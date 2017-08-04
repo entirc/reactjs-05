@@ -1,0 +1,52 @@
+Falar do livro que encontrou react-indepth
+
+Mostrar a figura das três fases
+Mostrar a figura initialRender
+
+Mostrar que as propriedades state e props começam sem nenhum dado por padrão 
+
+Mostrar que mesmo que não tenham dados as propriedades state e props o react 
+acessa os métodos (constructor e defaultProps). Descomentar os console.log 
+console.log("Constructor") e console.log("defaultProps")
+
+Adicionar valores no state e props. Falar que o método getInitialState é utilizado 
+na versão antiga, na nova os states devem ser adicionados no constructor.
+
+(Descomentar) Mostrar o método componentWillMount.
+Mostrar que é possível acessar o props e state.
+Mostrar que no livro o autor diz que se der um set no state dentro desse método o 
+componente não será renderizado(17/27). (Mas está sendo =P). Só ser for na versão anterior.
+Descomentar o this.setState({ foo: 'bar' });
+Falar que geralmente o que você viu foi o pessoal colocando dentro deste métodos dados para 
+serem exibidos na aplicação.
+
+
+  render(){
+    console.log("this Person: ", this)
+    console.log("render this.props: ", this.props)
+    console.log("render this.state: ", this.state)
+    return(
+      <div>  
+        <h1 ref="titulo"> ENTI - Aprendendo React #5 </h1>
+        <p>O email é: {this.state.email}</p>
+      </div>
+    )
+  }
+
+
+
+    render() {
+    //console.log("Render Form")
+    return (
+      <div>
+        <button onClick={this.montar}>Montar</button>&nbsp;
+        <button onClick={this.desmontar}>Desmontar</button>&nbsp;
+        <div id="meuNome"></div>
+        <br/>
+        <label id="labelEmail" ref="em">email: </label><input type="text" onChange={ this.handleChange } />
+        <Person email={ this.state.email } />
+      </div>
+    );
+  }
+
+  https://www.kirupa.com/react/lifecycle_example.htm

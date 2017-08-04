@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   entry: [
     path.resolve(__dirname, 'src', 'index.js'),
-    'webpack-dev-server/client?http://localhost:9050'
+    'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
     filename: 'bundle.js',
