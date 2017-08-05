@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "yarn build -- --watch",
-    "dev": "webpack-dev-server --open --content-base --port 8080 --colors"
+    "dev": "webpack-dev-server --open --content-base --port 9050 --colors"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -18,6 +18,7 @@
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
+    "jquery": "^3.2.1",
     "react": "^15.6.1",
     "react-c3js": "^0.1.19",
     "react-dom": "^15.6.1"

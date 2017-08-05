@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import $ from 'jquery'
+
 class Person extends React.Component{
   constructor () {
   //  console.log("Constructor")
@@ -9,6 +11,7 @@ class Person extends React.Component{
       email: '',
       password: ''
     }
+   // console.log("this state: ", this)
   }
 
   static get defaultProps() {
@@ -38,70 +41,72 @@ class Person extends React.Component{
 
   componentDidMount() {
     //console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
-    //console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
+   // console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
   }
 
   /************* Segunda Fase ********************/
 
   componentWillReceiveProps(nextProps) {
     //console.log("this.props.email ",this.props.email)
-    //console.log("componentWillReceiveProps: ",nextProps.email)
-   // console.log(this.props)
+   // console.log("componentWillReceiveProps: ",nextProps.email)
     //this.props.name = "Michel";
 
-  /*  this.setState({
+    this.setState({
       email:nextProps.email
-    })*/
+    })
   }
 
+  
   shouldComponentUpdate(nextProps, nextState){
-    //console.log("shouldComponentUpdate nextProps ",nextProps)
-   // console.log("shouldComponentUpdate nextState ",nextState)
+   // console.log("shouldComponentUpdate nextProps ",nextProps)
+   //console.log("shouldComponentUpdate nextState ",nextState)
 /*
     this.setState({
       email:nextState.email="TESTE"
     })
 */
- /*   if(this.props.email!=nextProps.email || this.state.email!=nextState.email){
-     // console.log('TRUE')
+    if(this.props.email!=nextProps.email || this.state.email!=nextState.email){
+      //console.log('TRUE')
       return true
     }else{
       return false
-    }*/
+    }
 
-  // return false
+  // return true
   }
 
+
   componentWillUpdate(nextProps, nextState){
-   // console.log("componentWillUpdate nextProps ",nextProps)
-   // console.log("email valor no input ", this.state.email)
-   // console.log("componentWillUpdate nextState ",nextState)
-    //let temArroba = (nextState.email).includes("@")
+    //console.log("componentWillUpdate nextProps ",nextProps)
+   // console.log("this.state ", this.state.email)
+    //console.log("componentWillUpdate nextState ",nextState.email)
+   // let temArroba = (nextState.email).includes("@")
     //console.log("temArroba " + temArroba)
 /*
     this.setState({
       email:nextState.email="TESTE"
     })
    */
+  //console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
   }
 
   componentDidUpdate(prevProps, prevState){
    // console.log("componentDidUpdate prevProps ",prevProps)
-    //console.log("email valor no input ", this.state.email)
-   // console.log("componentDidUpdate prevState ",prevState)
+    //console.log("this.state ", this.state.email)
+    //console.log("componentDidUpdate prevState ",prevState.email)
   }
 
   /************* Terceira Fase ********************/
 
 
   render(){
-    console.log("this Person: ", this)
+    //console.log("this Person: ", this)
     console.log("render this.props: ", this.props)
     console.log("render this.state: ", this.state)
     return(
       <div>  
         <h1 ref="titulo"> ENTI - Aprendendo React #5 </h1>
- 
+        <p>O email é: {this.state.email}</p>
       </div>
     )
   }
@@ -147,12 +152,13 @@ class Form extends React.Component {
         <button onClick={this.desmontar}>Desmontar</button>&nbsp;
         <div id="meuNome"></div>
         <br/>
-        <label id="labelEmail" ref="em">email: </label><input type="text" onChange={ this.handleChange } />
-        <Person />
+        <label id="labelEmail">email: </label><input type="text" onChange={ this.handleChange } />
+        <Person email={ this.state.email } />
       </div>
     );
   }
 }
+
 
 class MeuNome extends React.Component{
   componentWillUnmount(){
@@ -167,23 +173,48 @@ class MeuNome extends React.Component{
 }
 
 class Links extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={
+      users:[]
+    }
+  }
 
   componentDidMount() {
-    //console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
+   // console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
+/*
+    $.ajax({
+      url: 'https://jsonplaceholder.typicode.com/users',
+      success: (data) =>{
+        this.setState({
+          users:data
+        })
+      }
+    })
+    */
   }
 
   render(){
     //console.log("this Links: ", this)
-    //habilite para gerar o erro.
-    //this.setState({ foo: 'bar' });
+    //this.setState({ foo: 'bar14' });
+    //console.log(ReactDOM.findDOMNode(this.refs.livro))
+    const { users } = this.state
     return(
-      <div> 
+      <div>
+        <ul>
+          {
+            users.map((user)=>{
+              return <li key={user.id}>{user.name}</li>
+            })
+          }
+        </ul>
         <br/>
         <a ref="livro" href="https://www.gitbook.com/book/developmentarc/react-indepth/details" target="_">react-indepth</a>
         <br/><br/>
         <img src="/assets/images/lifecycle.png" />
         <br/><br/>
-        <img src="/assets/images/initialRender.png" />
+        <img src="/assets/images/initialRender.png" />&nbsp;
+        <a href="https://developmentarc.gitbooks.io/react-indepth/content/life_cycle/birth/managing_children_components_and_mounting.html" target="_">Managing Children Components and Mounting</a>
         <br/><br/>
         <img src="/assets/images/stateChange.png" />&nbsp;
         <img src="/assets/images/propsChange.png" />
@@ -192,9 +223,8 @@ class Links extends React.Component{
         <br/><br/>
         <img src="/assets/images/react-lifecycle-flow-chart-states.png" />
         <br/><br/>
-        <a href="https://tylermcginnis.com/an-introduction-to-life-cycle-events-in-react-js/" target="_">An Introduction to Life Cycle Events in React</a>
+        <a href="https://www.kirupa.com/react/lifecycle_example.htm" target="_">Exemplo do Livro</a>
         <br/>
-        <a href="https://stackoverflow.com/questions/30668326/what-is-the-difference-between-using-constructor-vs-getinitialstate-in-react-r" target="_">What is the difference between using constructor vs getInitialState in React / React Native?</a>
       </div>
     )
   }

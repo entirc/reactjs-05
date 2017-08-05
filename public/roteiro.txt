@@ -13,40 +13,84 @@ Adicionar valores no state e props. Falar que o método getInitialState é utili
 na versão antiga, na nova os states devem ser adicionados no constructor.
 
 (Descomentar) Mostrar o método componentWillMount.
+Não tem como acessar o DOM porque ainda não foi renderizado.
 Mostrar que é possível acessar o props e state.
 Mostrar que no livro o autor diz que se der um set no state dentro desse método o 
-componente não será renderizado(17/27). (Mas está sendo =P). Só ser for na versão anterior.
+componente não será re-renderizado(17/27).
 Descomentar o this.setState({ foo: 'bar' });
-Falar que geralmente o que você viu foi o pessoal colocando dentro deste métodos dados para 
-serem exibidos na aplicação.
+Descomentar o comentário do constructor console.log("this state: ", this) em constructor
+Falar que geralmente o que você viu foi o pessoal colocando dentro deste métodos dados 
+de API para serem exibidos na aplicação.
+
+Falar do render.....
+Descomentar  this.setState({ foo: 'bar14' }); no Links. Mostrar que gera um aviso mas não
+modifica o valor do state.
+Comentar novamente o this.setState({ foo: 'bar14' });
+Descomentar o console.log(ReactDOM.findDOMNode(this.refs.livro))
+Comentar console.log(ReactDOM.findDOMNode(this.refs.livro))
+Descomentar o console.log("this Links: ", this) para mostrar o refs.
+Mostrar o link Managing Children Components and Mounting para ver a figura renderizada dos 
+pais e filhos no DOM. Renderiza do topo para baixo.
+Comentar novamente os console.logs que não estão mais utilizando.
+
+Descomentar console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
+Descomentar console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
+Mostrar que não se consegue acessar uma ref de outro componente.
+Descomentar console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
+Descomentar a chamada do Ajax em Links para mostrar o resultado.
+Falar que instalou o JQuery e mostrar o vídeo de onde veio o exemplo.
+Comentar os console.log
+
+Adicione <Person email={ this.state.email } /> em FORM
+Falar porque agora o email aparece como uma props se antes era um state
+Descomentar os console.log do componentWillReceiveProps de Person
+Explicar o this.props.email e o nextProps.email
+Descomentar     this.setState({
+      email:nextProps.email
+    })
+Mostrar que agora a mudança do email ocorre no props e state
+Descomentar this.props.name = "Michel" e mostrar o erro.
+Comentar os console.log
+
+Descomentar o shouldComponentUpdate
+Deixar comentado o return false do shouldComponentUpdate para mostrar o aviso
+Falar que deve retornar true ou false
+Descomentar o return false
+Quando atualiza um componente todos os seus filhos também vão chamar o método render
+Adicionar <p>O email é: {this.state.email}</p> no render em Person
+Modifique em shouldComponentUpdate o return para true
+Comente o return e descomente o if
+Descomentar     this.setState({
+      email:nextState.email="TESTE"
+    })
+Mostrar que é possível também modificar o state dentro deste método
+Comente     this.setState({
+      email:nextState.email="TESTE"
+    })
+Comente os console.log
+
+componentWillUpdate
+Descomentar o let temArroba = (nextState.email).includes("@")
+Descomente     this.setState({
+      email:nextState.email="TESTE"
+    })
+Descomente console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
+para mostrar que é possível acessar o DOM por refs
+
+componentDidUpdate
+Mostrar as inversão de comportamento dos (nextProps, nextState) e (prevProps, prevState)
+Pode manipular o DOM com o refs
+Comente os console.log de componentWillUpdate e componentDidUpdate
+
+Mostrar a montagem e a desmontagem de um componente
+
+Mostrar o exemplo do livro https://www.kirupa.com/react/lifecycle_example.htm
 
 
-  render(){
-    console.log("this Person: ", this)
-    console.log("render this.props: ", this.props)
-    console.log("render this.state: ", this.state)
-    return(
-      <div>  
-        <h1 ref="titulo"> ENTI - Aprendendo React #5 </h1>
-        <p>O email é: {this.state.email}</p>
-      </div>
-    )
-  }
 
+<h1 ref="titulo"> ENTI - Aprendendo React #5 </h1>
+<p>O email é: {this.state.email}</p>
 
+render() do Form
+<Person email={ this.state.email } />
 
-    render() {
-    //console.log("Render Form")
-    return (
-      <div>
-        <button onClick={this.montar}>Montar</button>&nbsp;
-        <button onClick={this.desmontar}>Desmontar</button>&nbsp;
-        <div id="meuNome"></div>
-        <br/>
-        <label id="labelEmail" ref="em">email: </label><input type="text" onChange={ this.handleChange } />
-        <Person email={ this.state.email } />
-      </div>
-    );
-  }
-
-  https://www.kirupa.com/react/lifecycle_example.htm

@@ -26,6 +26,10 @@ label{
      font-size: 20px;
 }
 
+ul{
+    color: yellowgreen;
+    font-size: 20px;  
+}
 
 #container{
     padding: 50px;
