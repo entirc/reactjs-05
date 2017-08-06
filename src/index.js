@@ -5,7 +5,7 @@ import $ from 'jquery'
 
 class Person extends React.Component{
   constructor () {
-  //  console.log("Constructor")
+    //console.log("Constructor")
     super()
     this.state = {
       email: '',
@@ -15,7 +15,7 @@ class Person extends React.Component{
   }
 
   static get defaultProps() {
-  //  console.log("defaultProps")
+    //console.log("defaultProps")
     return {
         name: '????',
         age: 35
@@ -25,9 +25,10 @@ class Person extends React.Component{
 
   componentWillMount() {
     let mode;
-    this.setState({ foo: 'bar' });
+    //this.setState({ foo: 'bar' });
     //console.log("Node: ", ReactDOM.findDOMNode(this.refs.titulo))
-   // console.log("this willMount: ", this)
+  //  console.log("this willMount: ", this)
+   
     if (this.props.age > 80) {
       mode = 'old';
     } else if (this.props.age < 18) {
@@ -41,15 +42,15 @@ class Person extends React.Component{
 
   componentDidMount() {
     //console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
-   // console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
+    //console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
   }
 
   /************* Segunda Fase ********************/
 
   componentWillReceiveProps(nextProps) {
     //console.log("this.props.email ",this.props.email)
-   // console.log("componentWillReceiveProps: ",nextProps.email)
-    //this.props.name = "Michel";
+    ///console.log("componentWillReceiveProps: ",nextProps.email)
+   // this.props.name = "Michel";
 
     this.setState({
       email:nextProps.email
@@ -58,41 +59,43 @@ class Person extends React.Component{
 
   
   shouldComponentUpdate(nextProps, nextState){
-   // console.log("shouldComponentUpdate nextProps ",nextProps)
-   //console.log("shouldComponentUpdate nextState ",nextState)
-/*
-    this.setState({
+  //console.log("shouldComponentUpdate nextProps ",nextProps)
+  // console.log("shouldComponentUpdate nextState ",nextState)
+
+   /* this.setState({
       email:nextState.email="TESTE"
     })
 */
-    if(this.props.email!=nextProps.email || this.state.email!=nextState.email){
-      //console.log('TRUE')
+  /*  if(this.props.email!=nextProps.email || this.state.email!=nextState.email){
+    console.log('TRUE')
       return true
     }else{
       return false
-    }
-
-  // return true
+    }*/
+   //console.log("this Person: ", this)
+   return true
   }
 
 
   componentWillUpdate(nextProps, nextState){
-    //console.log("componentWillUpdate nextProps ",nextProps)
-   // console.log("this.state ", this.state.email)
+    console.log("componentWillUpdate nextProps ",nextProps)
+    console.log("this.state ", this.state.email)
     //console.log("componentWillUpdate nextState ",nextState.email)
-   // let temArroba = (nextState.email).includes("@")
-    //console.log("temArroba " + temArroba)
+  //  let temArroba = (nextState.email).includes("@")
+   // console.log("temArroba " + temArroba)
+
 /*
     this.setState({
       email:nextState.email="TESTE"
     })
    */
-  //console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
+
+ // console.log("Node Título: ", ReactDOM.findDOMNode(this.refs.titulo))
   }
 
   componentDidUpdate(prevProps, prevState){
    // console.log("componentDidUpdate prevProps ",prevProps)
-    //console.log("this.state ", this.state.email)
+   // console.log("this.state ", this.state.email)
     //console.log("componentDidUpdate prevState ",prevState.email)
   }
 
@@ -100,13 +103,13 @@ class Person extends React.Component{
 
 
   render(){
-    //console.log("this Person: ", this)
+    console.log("this Person: ", this)
     console.log("render this.props: ", this.props)
     console.log("render this.state: ", this.state)
     return(
       <div>  
         <h1 ref="titulo"> ENTI - Aprendendo React #5 </h1>
-        <p>O email é: {this.state.email}</p>
+        <p> O email é: {this.state.email} </p>
       </div>
     )
   }
@@ -182,7 +185,6 @@ class Links extends React.Component{
 
   componentDidMount() {
    // console.log("Node Livro: ", ReactDOM.findDOMNode(this.refs.livro))
-/*
     $.ajax({
       url: 'https://jsonplaceholder.typicode.com/users',
       success: (data) =>{
@@ -191,7 +193,7 @@ class Links extends React.Component{
         })
       }
     })
-    */
+    
   }
 
   render(){
@@ -224,7 +226,9 @@ class Links extends React.Component{
         <img src="/assets/images/react-lifecycle-flow-chart-states.png" />
         <br/><br/>
         <a href="https://www.kirupa.com/react/lifecycle_example.htm" target="_">Exemplo do Livro</a>
-        <br/>
+        <br/><br/>
+        <a href="https://stackblitz.com/edit/react-5c4iby?file=index.js" target="_">Exemplo do Helton que não é do Helton</a>
+        <br/><br/>
       </div>
     )
   }
