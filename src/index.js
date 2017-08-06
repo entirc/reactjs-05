@@ -227,7 +227,7 @@ class Links extends React.Component{
         <br/><br/>
         <a href="https://www.kirupa.com/react/lifecycle_example.htm" target="_">Exemplo do Livro</a>
         <br/><br/>
-        <a href="https://stackblitz.com/edit/react-5c4iby?file=index.js" target="_">Exemplo do Helton que não é do Helton</a>
+        <a href="https://stackblitz.com/edit/react-component-lifecycle" target="_">Exemplo do Helton que não é do Helton</a>
         <br/><br/>
       </div>
     )
